@@ -280,10 +280,10 @@ with tab3:
     rfm["F"] = pd.cut(rfm.frequency, bins=[0, 1, 2, 10000], labels=[1, 2, 3]).astype(int)
     try:
         rfm["M"] = pd.qcut(rfm.monetary, 4, labels=[1, 2, 3, 4]).astype(int)
-    except ValueError:      # batas kuartil kembar (data filter sangat sedikit)
+    except ValueError:      
         try:
             rfm["M"] = pd.qcut(rfm.monetary.rank(method="first"), 4, labels=[1, 2, 3, 4]).astype(int)
-        except ValueError:  # hanya 1-3 pelanggan pada filter: kuartil tidak bisa dibuat
+        except ValueError:  
             rfm["M"] = 1
 
     def segment(r):
